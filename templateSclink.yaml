@@ -1,0 +1,21 @@
+captainVersion: '4'
+documentation: Read the documentation @ https://shlink.io/documentation/
+description: shlink is a URL shortener which provides both REST and CLI interfaces
+  to interact with it.
+services:
+  "$$cap_appname":
+    image: shlinkio/shlink:$$cap_shlink_version
+    containerHttpPort: '8080'
+    volumes:
+      - "$$cap_appname-config:/etc/shlink/config/params"
+    restart: always
+caproverOneClickApp:
+  variables:
+    - id: "$$cap_shlink_version"
+      label: shlink version tag
+      description: Checkout their docker page for the valid tags @ https://hub.docker.com/r/shlinkio/shlink/tags
+      defaultValue: 2.0.5
+  instructions:
+    start: shlink is a self-hosted url shortener server with a web interface.
+    end: shlink is deployed and available as $$cap_appname.
+  displayName: 'Shlink'
